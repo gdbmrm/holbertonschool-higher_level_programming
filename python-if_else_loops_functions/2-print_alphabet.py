@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 
-for item in range(ord("a"), ord("z") + 1):
-    print(f"{chr(item)}", end="")
+for ch in range(97, 123):
+    print("{:c}".format(ch), end='')
