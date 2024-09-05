@@ -9,7 +9,4 @@ def fizzbuzz():
         elif num % 3 == 0 & num % 5 == 0:
             print("FizzBuzz", end=" ")
         else:
-            if num != 101:
                 print(num, end=" ")
-            else:
-                print(num, end="")
