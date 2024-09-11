@@ -11,4 +11,4 @@ def divisible_by_2(my_list=[]):
         else:
             new_list.append(False)
         i += 1
-    return(new_list)
+    return new_list
