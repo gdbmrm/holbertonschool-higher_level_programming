@@ -13,4 +13,4 @@ def best_score(a_dictionary):
             max = item
             max_key = key
 
-    return(max_key)
+    return max_key
