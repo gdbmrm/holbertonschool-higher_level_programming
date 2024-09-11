@@ -7,4 +7,4 @@ def multiply_by_2(a_dictionary):
     for key in my_dict:
         my_dict[key] *= 2
 
-    return(my_dict)
+    return my_dict
