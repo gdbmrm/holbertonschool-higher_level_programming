@@ -1,0 +1,28 @@
+>>> add_integer = __import__('0-add_integer').add_integer
+
+    >>> add_integer(3,6)
+    9
+
+    >>> add_integer(3.2, 6)
+    9.2
+
+    >>> add_integer("m", 3)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "<stdin>", line 3, in add_integer
+    ValueError: a must be an integer
+
+    >>> add_integer("10", 3)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "<stdin>", line 3, in add_integer
+    TypeError: a must be an integer
+
+    >>> add_integer(10)
+    108
+
+    >>> add_integer(10, "5")
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "<stdin>", line 3, in add_integer
+    TypeError: b must be an integer
