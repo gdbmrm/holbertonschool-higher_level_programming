@@ -1,0 +1,12 @@
+    
+    >>> add_integer("m", 3)
+    a must be an integer
+
+
+   
+
+    
+
+    
+
+    

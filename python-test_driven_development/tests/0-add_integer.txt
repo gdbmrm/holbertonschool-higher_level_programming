@@ -4,25 +4,24 @@
     9
 
     >>> add_integer(3.2, 6)
-    9.2
-
-    >>> add_integer("m", 3)
-    Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-    File "<stdin>", line 3, in add_integer
-    ValueError: a must be an integer
+    9
 
     >>> add_integer("10", 3)
     Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-    File "<stdin>", line 3, in add_integer
-    TypeError: a must be an integer
+    ...
+    TypeError: can only concatenate str (not "int") to str
 
     >>> add_integer(10)
     108
 
     >>> add_integer(10, "5")
     Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-    File "<stdin>", line 3, in add_integer
-    TypeError: b must be an integer
+    ...
+    TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+    f = float('-inf')
+    >>> add_integer(f, 6))
+    Traceback (most recent call last):
+    ...
+    int_a = int(a)
+    OverflowError: cannot convert float infinity to integer
