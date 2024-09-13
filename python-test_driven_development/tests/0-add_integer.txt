@@ -20,7 +20,7 @@
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
     f = float('-inf')
-    >>> add_integer(f, 6))
+    >>> add_integer(f, 6)
     Traceback (most recent call last):
     ...
     int_a = int(a)
