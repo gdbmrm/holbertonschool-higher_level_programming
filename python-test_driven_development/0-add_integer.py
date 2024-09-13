@@ -8,6 +8,7 @@ The example module supplies one function, add_integer().  For example,
 10
 """
 
+
 def add_integer(a, b=98):
     """
     Adds two integers.
