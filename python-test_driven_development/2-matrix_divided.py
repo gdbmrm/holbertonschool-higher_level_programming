@@ -1,6 +1,16 @@
 #!/usr/bin/python3
+"""Define a matrix division function"""
 
 def matrix_divided(matrix, div):
+    """Divide all elements of a matrix
+    matrix must be a list of lists of integers or floats
+    Raises:
+        TypeError: if matrix must be a matrix (list of lists) of integers/float
+        TypeError: if Each row of the matrix must have the same size
+        TypeError: if div must be a number
+        ZeroDivisionError: if division by zero
+    """
+
     new_matrix = []
     i, j = 0, 0
 
@@ -11,9 +21,11 @@ def matrix_divided(matrix, div):
         for j in range(len(matrix[i])):
             if not isinstance(matrix[i][j], (int, float)):
                 raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
-            if len(matrix[i]) != len(matrix):
-                raise TypeError("Each row of the matrix must have the same size")
-
+           
+    for i in range(len(matrix) - 1):
+        for j in range(len(matrix)):
+            if len(matrix[i]) != len(matrix[j]):
+                raise ValueError("Each row of the matrix must have the same size")
 
     for i in range(len(matrix)):
         new_row = []
