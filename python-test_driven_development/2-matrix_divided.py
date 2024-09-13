@@ -4,6 +4,12 @@ def matrix_divided(matrix, div):
     new_matrix = []
     i, j = 0, 0
 
+    if not isinstance(div, (int, float)):
+        raise TypeError("div must be a number")
+
+
+
+
     for i in range(len(matrix)):
         new_row = []
         for j in range(len(matrix[i])):

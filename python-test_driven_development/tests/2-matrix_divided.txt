@@ -14,9 +14,9 @@
     [[1, 2, 3], [4, 5, 6]]
 
     >>> matrix_divided(matrix, "m")
-    div must be a number
-    []
-    [[1, 2, 3], [4, 5, 6]]
+    Traceback (most recent call last):
+    ...
+    TypeError: div must be a number
 
     matrix = [
     [1, 2, 3],
