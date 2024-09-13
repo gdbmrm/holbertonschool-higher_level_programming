@@ -10,9 +10,13 @@
 
     >>> matrix_divided(matrix, 0)
     division by zero
+    []
+    [[1, 2, 3], [4, 5, 6]]
 
     >>> matrix_divided(matrix, "m")
     div must be a number
+    []
+    [[1, 2, 3], [4, 5, 6]]
 
     matrix = [
     [1, 2, 3],
