@@ -11,11 +11,11 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([1, 2, 3, 4]), 4)
         self.assertEqual(max_integer([1, 4, 3, 2]), 4)
 
-    def test_emptylist(self):
-        self.assertEqual(len(list), 0)
+    def test_list_empty(self):
+        self.assertEqual(max_integer([]), None)
 
-    def test_allintegers(self):
-        self.assertNotIsInstance(len(list),)
+    def test_all_integers(self):
+        self.assertIsInstance(max_integer([1, 2, 3]), int)
 
 
 if __name__ == '__main__':
