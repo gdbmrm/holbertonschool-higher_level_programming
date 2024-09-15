@@ -9,12 +9,18 @@ def roman_to_int(roman_string):
         "X" : 10,
         "L" : 50,
         "C" : 100,
-        "D" : 150,
+        "D" : 500,
         "M" : 1000
     }
 
-    for chiffre_rom in roman_string:
-        resultat += my_dict[chiffre_rom]
+
+    for i in range(len(roman_string)- 1):
+        if my_dict[roman_string[i]] < my_dict[roman_string[i + 1]]:
+            resultat -= my_dict[roman_string[i]]
+        else:
+            resultat += my_dict[roman_string[i]]
+
+    resultat += my_dict[roman_string[-1]]
 
     return resultat
         
