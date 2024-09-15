@@ -6,5 +6,5 @@ matrix = [
     [1, 2, 3],
     [4, 5, 6]
 ]
-print(matrix_divided(matrix, float('NaN')))
+print(matrix_divided(matrix, 3))
 print(matrix)
