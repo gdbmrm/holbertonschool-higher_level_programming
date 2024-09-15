@@ -2,6 +2,9 @@
 
 def roman_to_int(roman_string):
 
+    if isinstance(roman_string, str):
+        return 0
+
     resultat = 0
     my_dict = {
         "I": 1,
