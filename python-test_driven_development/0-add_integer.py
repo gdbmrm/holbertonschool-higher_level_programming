@@ -12,14 +12,9 @@ def add_integer(a, b=98):
     """
     result = 0
 
-    try:
-        int_a = int(a)
-    except (TypeError, ValueError):
-        return("a must be an integer")
-
-    try:
-        int_b = int(b)
-    except (TypeError, ValueError):
-        return("b must be an integer")
+    if not isinstance(a, (int, float)):
+        raise TypeError("a must be an integer")
+    if not isinstance(b, (int, float)):
+        raise TypeError("b must be an integer")
 
     return int(a + b)

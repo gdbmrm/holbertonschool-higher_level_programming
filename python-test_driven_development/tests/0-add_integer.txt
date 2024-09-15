@@ -9,7 +9,7 @@
     >>> add_integer("10", 3)
     Traceback (most recent call last):
     ...
-    TypeError: can only concatenate str (not "int") to str
+    TypeError: a must be an integer
 
     >>> add_integer(10)
     108
@@ -17,7 +17,7 @@
     >>> add_integer(10, "5")
     Traceback (most recent call last):
     ...
-    TypeError: unsupported operand type(s) for +: 'int' and 'str'
+    TypeError: b must be an integer
 
     >>> add_integer(float('-inf'), 6)
     Traceback (most recent call last):
