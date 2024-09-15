@@ -28,15 +28,16 @@ def matrix_divided(matrix, div):
             if not isinstance(matrix[i][j], (int, float)):
                 raise TypeError(str)
 
-    len_ligne = len(matrix[0])
-    if not all(len(ligne) == len_ligne for ligne in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
+    str = "Each row of the matrix must have the same size"
+    for i in range(len(matrix) - 1):
+        for j in range(len(matrix)):
+            if len(matrix[i]) != len(matrix[j]):
+                raise ValueError(str)
 
     for i in range(len(matrix)):
-        new_row = []
+        nouvelle_ligne = []
         for j in range(len(matrix[i])):
-                new_row.append(round(matrix[i][j] / div, 2))
+                nouvelle_ligne.append(round(matrix[i][j] / div, 2))
 
-
-        new_matrix.append(new_row)
+    new_matrix.append(nouvelle_ligne)
     return new_matrix
