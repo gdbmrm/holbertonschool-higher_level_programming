@@ -2,7 +2,7 @@
 
 def roman_to_int(roman_string):
 
-    if isinstance(roman_string, str):
+    if not isinstance(roman_string, str) or roman_string is None  or len(roman_string) == 0:
         return 0
 
     resultat = 0
