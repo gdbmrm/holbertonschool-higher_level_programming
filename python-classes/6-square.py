@@ -4,9 +4,10 @@ class Square:
     """
     Class that set the size of a square
     """
-    def __init__(self, size=0):
+    def __init__(self, size=0, position=(0, 0)):
         """ set the size of the square with a private attribute
         """
+        self.__position = position
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         elif size <= 0:
@@ -44,3 +45,14 @@ class Square:
                 for j in range(self.__size):
                     print("#", end="")
                 print()
+
+    @property
+    def position(self):
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        if not isinstance(value, tuple) or len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
