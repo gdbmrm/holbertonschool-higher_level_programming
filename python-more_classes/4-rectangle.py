@@ -86,5 +86,7 @@ class Rectangle:
         return rectangle
 
     def __repr__(self):
-        return self.__height,
-         self.__width
+        """
+        return the line commands that can create a new instance
+        """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
