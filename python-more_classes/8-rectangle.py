@@ -122,6 +122,6 @@ class Rectangle:
         if area_1 > area_2:
             return rect_1
         elif area_1 < area_2:
-            return area_2
+            return rect_2
         else:
-            return area_1
+            return rect_1
