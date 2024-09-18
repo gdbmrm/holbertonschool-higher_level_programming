@@ -10,6 +10,7 @@ class Rectangle:
     class that create a rectangle
     """
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -18,7 +19,7 @@ class Rectangle:
         self.__width = width
         self.__height = height
         type(self).number_of_instances += 1
-        self.print_symbol = "#"
+        type(self).print_symbol
 
     @property
     def width(self):
