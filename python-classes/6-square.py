@@ -42,6 +42,9 @@ class Square:
         self.__size = value
 
     def my_print(self):
+        """
+        print the rectangle
+        """
         if self.__size == 0:
             print()
         else:
@@ -49,17 +52,23 @@ class Square:
                 print()
             for i in range(self.__size):
                 for b in range(self.position[0]):
-                    print(" ")
-                    for j in range(self.__size):
-                        print("#", end="")
-                    print()
+                    print(" ", end="")
+                for j in range(self.__size):
+                    print("#", end="")
+                print()
 
     @property
     def position(self):
+        """
+        return the position
+        """
         return self.__position
 
     @position.setter
     def position(self, value):
+        """
+        set the value
+        """
         if not isinstance(value, tuple) or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
