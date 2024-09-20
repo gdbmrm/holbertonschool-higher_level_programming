@@ -131,6 +131,7 @@ class Rectangle:
         """
         class method that create a square instead of a rectangle
         """
-        Rectangle.__height = size
-        Rectangle.__width = size
-        return cls()
+        square = cls()
+        square.__height = size
+        square.__width = size
+        return square
