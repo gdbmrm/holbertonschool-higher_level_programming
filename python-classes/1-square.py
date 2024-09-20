@@ -4,6 +4,7 @@ square module.
 This module contains a class that defines a square.
 """
 
+
 class Square:
     """
     Class that set the size of a square
