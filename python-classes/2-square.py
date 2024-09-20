@@ -9,11 +9,12 @@ class Square:
     """
     Class that set the size of a square
     """
-    def __init__(self, size):
+    def __init__(self, size=0):
         """ set the size of the square with a private attribute
         """
-        self.__size = size
-        if isinstance(self, int):
+        if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("size must be >= 0")
+        else:
+            self.__size = size
