@@ -1,7 +1,14 @@
 #!/usr/bin/python3
+"""
+childclass of the class list
+"""
+
 
 class MyList(list):
     def __init__(self):
+        """
+        constructeur
+        """
         super().__init__()
 
     def print_sorted(self):
