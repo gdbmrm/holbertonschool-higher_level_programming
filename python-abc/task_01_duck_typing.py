@@ -71,3 +71,10 @@ def shape_info(shape):
     perimeter = shape.perimeter()
     print("Area: {}".format(area))
     print("Perimeter: {}".format(perimeter))
+
+
+circle = Circle(radius=2)
+rectangle = Rectangle(width=3, height=3)
+
+shape_info(circle)
+shape_info(rectangle)
