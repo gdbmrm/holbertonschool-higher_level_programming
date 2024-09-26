@@ -5,7 +5,11 @@ BaseGeometry = __import__('7-base_geometry').BaseGeometry
 Geometry module
 """
 
+
 class Rectangle(BaseGeometry):
+    """
+    class rectangle
+    """
     def __init__(self, width, height):
         """
         initialize width and height

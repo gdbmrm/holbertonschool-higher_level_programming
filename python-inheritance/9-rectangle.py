@@ -7,6 +7,9 @@ Geometry module
 
 
 class Rectangle(BaseGeometry):
+    """
+    class rectangle with an str function and an area function
+    """
     def __init__(self, width, height):
         """
         initialize width and height
