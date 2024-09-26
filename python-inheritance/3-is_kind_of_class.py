@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+fonction is_kind_of_class
+"""
+
 
 def is_kind_of_class(obj, a_class):
     """

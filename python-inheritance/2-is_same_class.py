@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+fonction is_same_class
+"""
+
 
 def is_same_class(obj, a_class):
     """

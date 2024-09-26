@@ -7,7 +7,7 @@ childclass of the class list
 class MyList(list):
     def __init__(self):
         """
-        constructeur
+        constructeur de la classe
         """
         super().__init__()
 
