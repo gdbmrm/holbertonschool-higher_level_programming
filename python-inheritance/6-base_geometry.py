@@ -5,6 +5,9 @@ Geometry module
 
 
 class BaseGeometry:
+    """
+    class basegeometry with one function: area
+    """
 
     def area(self):
         """
