@@ -1,0 +1,38 @@
+
+>>> BaseGeometry = __import__('base_geometry').BaseGeometry
+
+    >>> forme = Basegeometry()
+    >>> forme.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
+
+    >>> forme.integer_validator("width", 55)
+
+    >>> forme.integer_validator("rayon", 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: rayon must be greater than 0
+
+    >>> forme.integer_validator("cote", -5)
+    Traceback (most recent call last):
+        ...
+    ValueError: cote must be greater than 0
+
+    >>> forme.integer_validator("taille", "ten")
+    Traceback (most recent call last):
+        ...
+    TypeError: taille must be an integer
+
+    >>> forme.integer_validator("taille", 3)
+    >>> forme.integer_validator("taille", 3.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: taille must be an integer
+
+    >>> forme.integer_validator("valeur", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: valeur must be an integer
+
+    >>> forme.integer_validator("width", 100)

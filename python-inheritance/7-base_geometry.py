@@ -5,6 +5,11 @@ Geometry module
 
 
 class BaseGeometry:
+    """
+    class base geometry
+    with area function
+    and a function that validate the integer
+    """
 
     def area(self):
         """
@@ -17,7 +22,7 @@ class BaseGeometry:
         function that validate the value entered
         """
         if not isinstance(value, int):
-            raise TypeError("<name> must be an integer")
+            raise TypeError("{} must be an integer".format(name))
         elif value <= 0:
-            raise ValueError("<name> must be greater than 0")
+            raise ValueError("{} must be greater than 0".format(name))
         self.__value = value
