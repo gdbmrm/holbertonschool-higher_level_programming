@@ -72,7 +72,7 @@ class Rectangle(Shape):
         return self.__height * 2 + self.__width * 2
 
 
-def shape_info(Shape):
+def shape_info(shape):
     """
     function shape_info
     """

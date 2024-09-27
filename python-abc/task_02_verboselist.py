@@ -38,12 +38,3 @@ class VerboseList(list):
             x = -1
         print("Popped {} from the list.".format(self[x]))
         super().pop(x)
-
-
-my_list = VerboseList([5, 22, 24, 27])
-my_list.append(4)
-my_list.extend([5, 6])
-my_list.remove(22)
-my_list.pop()
-my_list.pop(0)
-print(my_list)
