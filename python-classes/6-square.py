@@ -1,29 +1,30 @@
 #!/usr/bin/python3
 """
 Square module.
-This module contains a class that defines a square.
 """
+
 
 class Square:
     """
-    Class that defines the size of a square
+    class Square
     """
     def __init__(self, size=0, position=(0, 0)):
-        """ Set the size of the square with a private attribute
+        """
+        constructor
         """
         self.position = position
         self.size = size
 
     def area(self):
         """
-        Return the area of the square given the size
+        area of the square
         """
         return self.__size ** 2
 
     @property
     def size(self):
         """
-        Return the size of the square
+        Return the size
         """
         return self.__size
 
@@ -40,7 +41,7 @@ class Square:
 
     def my_print(self):
         """
-        Print the square
+        Print a square
         """
         if self.__size == 0:
             print()
@@ -61,7 +62,7 @@ class Square:
     @position.setter
     def position(self, value):
         """
-        Set the position of the square
+        Set the position
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(i, int) for i in value) or
