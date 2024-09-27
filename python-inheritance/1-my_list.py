@@ -15,3 +15,7 @@ class MyList(list):
         """
         liste = sorted(self)
         print(liste)
+
+if __name__ == "__main__":
+    my_list = MyList([1, 5, 9, 6, 8])
+    my_list.print_sorted() 
