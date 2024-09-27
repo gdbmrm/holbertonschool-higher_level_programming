@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 module shape
 """
@@ -33,7 +33,7 @@ class Circle(Shape):
         """
         constructor
         """
-        self.rayon = radius
+        self.rayon = abs(radius)
 
     def area(self):
         """
