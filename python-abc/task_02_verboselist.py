@@ -22,7 +22,6 @@ class VerboseList(list):
         print("Extended the list with [{}] items.".format(len(x)))
         super().extend(x)
 
-
     def remove(self, item):
         """
         remove method
