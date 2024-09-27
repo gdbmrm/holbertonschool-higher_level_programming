@@ -13,4 +13,5 @@ class MyList(list):
         """
         fonction qui affiche une liste croissante
         """
-        print(sorted(self))
+        liste = sorted(self)
+        print(liste)
