@@ -82,8 +82,9 @@ def shape_info(shape):
     print("Perimeter: {}".format(perimeter))
 
 
-circle = Circle(radius=2)
-rectangle = Rectangle(width=3, height=3)
+if __name__ == "__main__":
+    circle = Circle(radius=2)
+    rectangle = Rectangle(width=3, height=3)
 
-shape_info(circle)
-shape_info(rectangle)
+    shape_info(circle)
+    shape_info(rectangle)
