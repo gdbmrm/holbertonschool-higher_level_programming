@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 module counted iterator
 """
@@ -17,8 +17,8 @@ class CountedIterator():
         method next
         """
         try:
-            self.count += 1
             prochain = next(self.iterator)
+            self.count += 1
             return prochain
         except StopIteration:
             raise StopIteration
