@@ -76,10 +76,8 @@ def shape_info(shape):
     """
     function shape_info
     """
-    area = shape.area()
-    perimeter = shape.perimeter()
-    print("Area: {}".format(area))
-    print("Perimeter: {}".format(perimeter))
+    print("Area: {}".format(shape.area()))
+    print("Perimeter: {}".format(shape.perimeter()))
 
 
 if __name__ == "__main__":
