@@ -5,11 +5,9 @@ childclass of the class list
 
 
 class MyList(list):
-    def __init__(self):
-        """
-        constructeur de la classe
-        """
-        super().__init__()
+    """
+    childclass MyList
+    """
 
     def print_sorted(self):
         """
