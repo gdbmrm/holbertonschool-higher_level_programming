@@ -2,6 +2,8 @@
 """
 module counted iterator
 """
+
+
 class CountedIterator():
     def __init__(self, some_iterable):
         """
