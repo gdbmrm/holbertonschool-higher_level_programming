@@ -33,6 +33,8 @@ class Circle(Shape):
         """
         constructor
         """
+        if not isinstance(radius, (int, float)) or radius <= 0:
+            raise ValueError
         self.rayon = radius
 
     def area(self):
