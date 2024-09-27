@@ -37,4 +37,4 @@ class VerboseList(list):
         if x is None:
             x = -1
         print("Popped [{}] from the list.".format(self[x]))
-        super().pop(x)
+        return super().pop(x)
