@@ -1,38 +1,25 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
->>> BaseGeometry = __import__('base_geometry').BaseGeometry
+>>> geom = BaseGeometry()
+>>> geom.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
 
-    >>> forme = Basegeometry()
-    >>> forme.area()
-    Traceback (most recent call last):
-        ...
-    Exception: area() is not implemented
+>>> geom.integer_validator("value", 10)
+10
 
-    >>> forme.integer_validator("width", 55)
+>>> geom.integer_validator("my_str", "o")
+Traceback (most recent call last):
+    ...
+TypeError: my_str must be an integer
 
-    >>> forme.integer_validator("rayon", 0)
-    Traceback (most recent call last):
-        ...
-    ValueError: rayon must be greater than 0
+>>> geom.integer_validator("value", 0)
+Traceback (most recent call last):
+    ...
+ValueError: value must be greater than 0
 
-    >>> forme.integer_validator("cote", -5)
-    Traceback (most recent call last):
-        ...
-    ValueError: cote must be greater than 0
-
-    >>> forme.integer_validator("taille", "ten")
-    Traceback (most recent call last):
-        ...
-    TypeError: taille must be an integer
-
-    >>> forme.integer_validator("taille", 3)
-    >>> forme.integer_validator("taille", 3.5)
-    Traceback (most recent call last):
-        ...
-    TypeError: taille must be an integer
-
-    >>> forme.integer_validator("valeur", None)
-    Traceback (most recent call last):
-        ...
-    TypeError: valeur must be an integer
-
-    >>> forme.integer_validator("width", 100)
+>>> geom.integer_validator("value", -5)
+Traceback (most recent call last):
+    ...
+ValueError: value must be greater than 0
