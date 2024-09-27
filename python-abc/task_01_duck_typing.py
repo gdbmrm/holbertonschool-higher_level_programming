@@ -33,19 +33,19 @@ class Circle(Shape):
         """
         constructor
         """
-        self.__rayon = radius
+        self.rayon = radius
 
     def area(self):
         """
         calculate area
         """
-        return pi * self.__rayon ** 2
+        return pi * self.rayon ** 2
 
     def perimeter(self):
         """
         calculate perimeter
         """
-        return 2 * pi * self.__rayon
+        return 2 * pi * self.rayon
 
 
 class Rectangle(Shape):
@@ -56,20 +56,20 @@ class Rectangle(Shape):
         """
         constructor
         """
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
 
     def area(self):
         """
         calculate area
         """
-        return self.__height * self.__width
+        return self.height * self.width
 
     def perimeter(self):
         """
         calculate perimeter
         """
-        return self.__height * 2 + self.__width * 2
+        return self.height * 2 + self.width * 2
 
 
 def shape_info(shape):
