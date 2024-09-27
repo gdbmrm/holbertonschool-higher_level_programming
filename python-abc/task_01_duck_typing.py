@@ -83,6 +83,5 @@ def shape_info(shape):
 if __name__ == "__main__":
     circle = Circle(radius=2)
     rectangle = Rectangle(width=3, height=3)
-
     shape_info(circle)
     shape_info(rectangle)
