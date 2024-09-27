@@ -30,6 +30,9 @@ class Circle(Shape):
     class circle
     """
     def __init__(self, radius):
+        """
+        constructor
+        """
         self.__rayon = radius
 
     def area(self):
@@ -50,6 +53,9 @@ class Rectangle(Shape):
     class rectangle
     """
     def __init__(self, width, height):
+        """
+        constructor
+        """
         self.__width = width
         self.__height = height
 
@@ -67,6 +73,9 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
+    """
+    function shape_info
+    """
     area = shape.area()
     perimeter = shape.perimeter()
     print("Area: {}".format(area))
