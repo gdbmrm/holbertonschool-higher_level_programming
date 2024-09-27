@@ -1,76 +1,67 @@
 #!/usr/bin/python3
 """
-square module.
+Square module.
 This module contains a class that defines a square.
 """
 
-
 class Square:
     """
-    Class that set the size of a square
+    Class that defines the size of a square
     """
     def __init__(self, size=0, position=(0, 0)):
-        """ set the size of the square with a private attribute
+        """ Set the size of the square with a private attribute
         """
-        self.__position = position
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        elif size <= 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+        self.position = position
+        self.size = size
 
     def area(self):
         """
-        return the area of a square given the size
+        Return the area of the square given the size
         """
-        area = self.__size ** 2
-        return area
+        return self.__size ** 2
 
     @property
     def size(self):
         """
-        return the size of a square
+        Return the size of the square
         """
         return self.__size
 
     @size.setter
     def size(self, value):
         """
-        set the size of a square
+        Set the size of the square
         """
-        if not isinstance(size, int):
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        elif size < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+        self.__size = value
 
     def my_print(self):
         """
-        print the rectangle
+        Print the square
         """
         if self.__size == 0:
             print()
             return
 
-        if self.__position[1] >= 0:
-            print("\n" * self.__position[1], end="")
-        for i in range(self.__size):
+        print("\n" * self.__position[1], end="")
+        for _ in range(self.__size):
             print(" " * self.__position[0], end="")
             print("#" * self.__size)
 
     @property
     def position(self):
         """
-        return the position
+        Return the position
         """
         return self.__position
 
     @position.setter
     def position(self, value):
         """
-        set the value
+        Set the position of the square
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(i, int) for i in value) or
