@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 Rectangle = __import__('9-rectangle').Rectangle
 
 
