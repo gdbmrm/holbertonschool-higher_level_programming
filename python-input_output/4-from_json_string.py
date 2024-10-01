@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-import json
 """
 fonction qui retourne la representation json de 'obj'
 """
+import json
 
 
 def from_json_string(my_str):
