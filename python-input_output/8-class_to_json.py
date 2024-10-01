@@ -5,7 +5,6 @@ avec une structure de données simple
 (liste, dictionnaire, chaîne, nombre entier et booléen)
 pour la sérialisation JSON d’un objet
 """
-import json
 
 
 def class_to_json(obj):
