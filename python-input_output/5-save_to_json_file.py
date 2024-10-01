@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import json
 """
  fonction qui écrit un objet dans un fichier texte,
 en utilisant une représentation JSON
  """
+import json
 
 
 def save_to_json_file(my_obj, filename):
