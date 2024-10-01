@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
- fonction qui écrit un objet dans un fichier texte,
+fonction qui écrit un objet dans un fichier texte,
 en utilisant une représentation JSON
  """
 import json
