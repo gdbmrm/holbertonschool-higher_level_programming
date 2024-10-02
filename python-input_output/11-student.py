@@ -34,6 +34,6 @@ class Student:
         """
         replaces all attributes of the Student instance
         """
-        self.first_name = json["first_name"]
-        self.last_name = json["last_name"]
-        self.age = json["age"]
+        self.first_name = json.get("first_name")
+        self.last_name = json.get("last_name")
+        self.age = json.get("age")
