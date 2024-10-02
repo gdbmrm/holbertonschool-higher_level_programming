@@ -22,8 +22,10 @@ class Student:
         return a dictionnary representation of a student
         """
         my_dict = {}
-        if isinstance(attrs, str):
-            for i in self.__dict__:
-                liste.append(i)
-            return liste
-        return self.__dict__
+        if attrs is not None and all(isinstance(attr, str) for attr in attrs):
+            for i in self.__dict__.keys():
+                if i in attrs:
+                    my_dict[i] = getattr(self, i)
+            return my_dict
+        else:
+            return self.__dict__
