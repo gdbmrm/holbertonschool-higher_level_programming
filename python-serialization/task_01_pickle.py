@@ -29,10 +29,14 @@ class CustomObject:
         """
         serialize
         """
-        with open(filename, "wb") as file_to_open:
-            pickle.dump(self.name, file_to_open)
-            pickle.dump(self.age, file_to_open)
-            pickle.dump(self.is_student, file_to_open)
+        try:
+            with open(filename, "wb") as file_to_open:
+                pickle.dump(self.name, file_to_open)
+                pickle.dump(self.age, file_to_open)
+                pickle.dump(self.is_student, file_to_open)
+        except Exception as error:
+            print(f"Error deserializing object: {error}")
+            return None
 
     @classmethod
     def deserialize(cls, filename):
