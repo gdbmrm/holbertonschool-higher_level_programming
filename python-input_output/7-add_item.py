@@ -4,7 +4,7 @@ fonction qui transforme en liste les arguments puis
 les integre dans le fichier add_item.json dans un format json
 """
 import sys
-import os.path
+import os
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 
@@ -15,7 +15,5 @@ if os.path.exists(filename):
 else:
     liste = []
 
-for index in range(1, len(sys.argv) + 1):
-    liste.append(sys.argv[index])
-
+liste.extend(sys.argv[1:])
 save_to_json_file(liste, filename)
