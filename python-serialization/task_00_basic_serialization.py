@@ -10,7 +10,8 @@ def serialize_and_save_to_file(data, filename):
     serialize and save data to the specified file
     """
     with open(filename, "wb") as file_to_open:
-        return pickle.dump(data, file_to_open)
+        data_json = pickle.dumps(data)
+        file_to_open.write(data_json)
 
 
 def load_and_deserialize(filename):
