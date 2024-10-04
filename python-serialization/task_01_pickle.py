@@ -31,9 +31,7 @@ class CustomObject:
         """
         try:
             with open(filename, "wb") as file_to_open:
-                pickle.dump(self.name, file_to_open)
-                pickle.dump(self.age, file_to_open)
-                pickle.dump(self.is_student, file_to_open)
+                pickle.dump(self, file_to_open)
         except Exception as error:
             return None
 
@@ -44,7 +42,6 @@ class CustomObject:
         """
         try:
             with open(filename, "rb") as file_to_open:
-                student = pickle.load(file_to_open)
-                return student
+                return pickle.load(file_to_open)
         except Exception as error:
             return None
