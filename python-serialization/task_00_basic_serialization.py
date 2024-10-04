@@ -17,7 +17,5 @@ def load_and_deserialize(filename):
     """
     load and deserialize data from the specified file
     """
-    my_dict = {}
     with open(filename, "rb") as file_to_open:
-        my_dict = pickle.load(file_to_open)
-    return my_dict
+        return pickle.load(file_to_open)
