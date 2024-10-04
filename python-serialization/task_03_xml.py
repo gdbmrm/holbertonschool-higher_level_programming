@@ -5,7 +5,11 @@ as an alternative format to JSON.
 """
 import xml.etree.ElementTree as ET
 
+
 def serialize_to_xml(dictionary, filename):
+    """
+    serialize to xml
+    """
 
     racine = ET.Element("data")
 
@@ -14,15 +18,20 @@ def serialize_to_xml(dictionary, filename):
         enfant.text = str(value)
 
     tree = ET.ElementTree(racine)
-    with open(filename, "wb") as file_to_open:
-        tree.write(file_to_open, encoding='unicode')
-    
+    with open(filename, "w") as file_to_open:
+        tree.write(file_to_open)
+
+
 def deserialize_from_xml(filename):
+    """
+    deserialize from xml
+    """
 
     file_parsed = ET.parse(filename)
+    racine = file_parsed.getroot()
     my_dict = {}
 
-    for key, value in file_parsed.items():
-        my_dict[key] = value
+    for enfant in racine:
+        my_dict[enfant.tag] = enfant.text
 
     return my_dict
