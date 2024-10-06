@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 serialization and deserialization using XML
 as an alternative format to JSON.
