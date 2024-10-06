@@ -6,12 +6,12 @@ as an alternative format to JSON.
 import xml.etree.ElementTree as ET
 
 
-def serialize_to_xml(dictionary, filename):
+def serialize_to_xml(dictionary, filename)
     """
     serialize to xml
     """
 
-    racine = ET.Element("data")
+    racine = ET.Element("<data>")
 
     for key, value in dictionary.items():
         enfant = ET.Element(racine, key)
