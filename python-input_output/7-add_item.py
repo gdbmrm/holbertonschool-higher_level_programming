@@ -14,8 +14,10 @@ filename = "add_item.json"
 
 if os.path.exists(filename):
     liste = load_from_json_file(filename)
+    os.remove(filename)
 else:
     liste = []
 
 liste.extend(sys.argv[1:])
+
 save_to_json_file(liste, filename)
