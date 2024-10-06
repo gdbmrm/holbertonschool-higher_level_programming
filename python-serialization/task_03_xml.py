@@ -1,37 +1,48 @@
 #!/usr/bin/python3
 """
-serialization and deserialization using XML
-as an alternative format to JSON.
+task_03_xml.py serialization and deserialization using
+XML as an alternative format to JSON
 """
 import xml.etree.ElementTree as ET
 
 
 def serialize_to_xml(dictionary, filename):
     """
-    serialize to xml
+    turn python dictionary to xml
+
+    Args:
+        dictionary (object): python object
+        filename (str): name of the file to write to
     """
-    racine = ET.Element("<data>")
+
+    root = ET.Element("data")
 
     for key, value in dictionary.items():
-        enfant = ET.Element(racine, key)
-        enfant.text = str(value)
-        racine.append(enfant)
+        child = ET.Element(key)
+        child.text = str(value)
+        root.append(child)
 
-    tree = ET.ElementTree(racine)
-    with open(filename, "w+") as file_to_open:
-        tree.write(file_to_open)
+    tree = ET.ElementTree(root)
+    tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 
 def deserialize_from_xml(filename):
     """
-    deserialize from xml
+    Read from xml file
+
+    Args:
+        filename (str): name of the file to read from
+
+    Returns:
+        the data from the xml file as a dictionary
     """
 
-    file_parsed = ET.parse(filename)
-    racine = file_parsed.getroot()
+    tree = ET.parse(filename)
+    root = tree.getroot()
 
-    my_dict = {}
-    for enfant in racine:
-        my_dict[enfant.tag] = enfant.text
+    data = {}
 
-    return my_dict
+    for child in root:
+        data[child.tag] = child.text
+
+    return data
