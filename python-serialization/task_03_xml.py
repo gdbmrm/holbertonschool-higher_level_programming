@@ -16,9 +16,10 @@ def serialize_to_xml(dictionary, filename):
     for key, value in dictionary.items():
         enfant = ET.Element(racine, key)
         enfant.text = str(value)
+        racine.append(enfant)
 
     tree = ET.ElementTree(racine)
-    with open(filename, "w") as file_to_open:
+    with open(filename, "w+") as file_to_open:
         tree.write(file_to_open)
 
 
