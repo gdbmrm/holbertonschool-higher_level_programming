@@ -41,6 +41,13 @@ def fetch_and_save_posts():
         {"body": parsed_data["body"]}
         for cle, valeur in parsed_data.items() if "body" in parsed_data]
 
-    with open("posts.csv", "w+") as file_to_write:
+    with open("posts.csv", "w", newline='') as file_to_write:
         file_writer = csv.DictWriter(
             file_to_write, fieldnames=["id", "title", "body"])
+        file_writer.writeheader()
+
+        i = 0
+        for index in range(len(dict_id)):
+            file_writer.writerow(dict_id[i])
+            file_writer.writerow(dict_title[i])
+            file_writer.writerow(dict_body[i])
