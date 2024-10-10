@@ -27,15 +27,15 @@ def fetch_and_save_posts():
     """
     response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
     if response.status_code == 200:
-        parsed_data = response.json()
+        data = response.json()
 
     my_list = [
-            {"id": post["id"], "title": post["title"], "body": post["body"]}
-            for post in parsed_data]
+        {"id": data["id"], "title": data["title"],
+            "completed": data["completed"]}
+        for post in data]
 
     with open("posts.csv", "w", newline='') as file_to_write:
         file_writer = csv.DictWriter(
-            file_to_write, fieldnames=["id", "title", "body"])
+            file_to_write, fieldnames=["id", "title", "completed"])
         file_writer.writeheader()
-
         file_writer.writerows(my_list)
