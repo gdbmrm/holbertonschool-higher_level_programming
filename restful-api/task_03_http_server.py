@@ -1,18 +1,23 @@
 #!/usr/bin/python3
-from http.server import BaseHTTPRequestHandler, HTTPServer
+"""
+Develop a simple API using Python with the `http.server` module
+"""
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import json
 
-class MyHandler(BaseHTTPRequestHandler):
+class My_SubClass(BaseHTTPRequestHandler):
+    """
+    sub class
+    """
     def do_GET(self):
+        """
+        method do_get that handle get request
+        """
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write(b"<html><body><h1>Hello, world!</h1></body></html>")
+        self.wfile.write(b'Hello, this is a simple API!')
 
-def run(server_class=HTTPServer, handler_class=MyHandler, port=8000):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print(f'Serving HTTP on port {port}...')
-    httpd.serve_forever()
 
-if __name__ == "__main__":
-    run()
+httpd = HTTPServer(('', 8000), My_SubClass)
+httpd.serve_forever()
