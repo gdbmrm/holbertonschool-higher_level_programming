@@ -14,7 +14,7 @@ class My_SubClass(BaseHTTPRequestHandler):
         method do_get that handle get request
         """
         ### si l'url contient /data
-        if "/data" in self.path:
+        if self.path == "/data":
             try:
                 ### status code 200 ok
                 self.send_response(200)
@@ -29,7 +29,7 @@ class My_SubClass(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(b'404 - Not Found')
+                self.wfile.write(b'Endpoint not found')
         else:
             ### sinon afficher une string
             self.send_response(200)
