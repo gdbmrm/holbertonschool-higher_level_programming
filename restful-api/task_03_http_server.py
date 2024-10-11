@@ -19,5 +19,5 @@ class My_SubClass(BaseHTTPRequestHandler):
         self.wfile.write(b'Hello, this is a simple API!')
 
 
-httpd = HTTPServer(('', 8000), My_SubClass)
+httpd = HTTPServer(('', 8080), My_SubClass)
 httpd.serve_forever()
