@@ -3,7 +3,6 @@
 Consuming and processing data from an API using Python
 """
 import requests
-import json
 import csv
 
 
@@ -16,9 +15,8 @@ def fetch_and_print_posts():
 
     if response.status_code == 200:
         parsed_data = response.json()
-
-    for item in parsed_data:
-        print(item['title'])
+        for item in parsed_data:
+            print(item['title'])
 
 def fetch_and_save_posts():
     """
