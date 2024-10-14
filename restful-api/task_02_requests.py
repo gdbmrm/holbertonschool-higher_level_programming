@@ -18,6 +18,7 @@ def fetch_and_print_posts():
         for item in parsed_data:
             print(item['title'])
 
+
 def fetch_and_save_posts():
     """
     fetch and save posts
