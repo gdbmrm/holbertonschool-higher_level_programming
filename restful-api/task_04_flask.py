@@ -33,14 +33,30 @@ def show_user_profile(username):
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
+    my_dict = {}
     new_user = request.get_json()
     if new_user:
         username = new_user.get("username")
         if username is None:
-            return "\"error": "Username is required"", 400
-        key = new_user.get("key")
-        users[username] = key
-        return "Your account has been registered", 201
+            return jsonify({"error": "Username is required"}), 400
+        my_dict["name"] = new_user.get("name")
+        name = new_user.get("name")
+        my_dict["age"] = new_user.get("age")
+        age = new_user.get("age")
+        my_dict["city"] = new_user.get("city")
+        city = new_user.get("city")
+        users[username] = {
+            "name": name,
+            "age": age,
+            "city": city
+        }
+        return jsonify({
+            "message": "Your account has been registered",
+            "name": name,
+            "age": age,
+            "city": city
+            }
+            ), 201
 
 
 if __name__ == "__main__":
