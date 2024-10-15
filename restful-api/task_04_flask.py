@@ -28,7 +28,18 @@ def check_status():
 
 @app.route('/users/<username>')
 def show_user_profile(username):
-    return users[username]
+    user = users.get(username)
+    name = users.get("name")
+    age = users.get("age")
+    city = users.get("city")
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+    return jsonify({
+        "username": username,
+        "name": user["name"],
+        "age": user["age"],
+        "city": user["city"]
+        })
 
 
 @app.route('/add_user', methods=['POST'])
@@ -44,17 +55,17 @@ def add_user():
         name = new_user.get("name")
         if name is None or not isinstance(name, str):
             return jsonify({
-                "error": "Name is requiredd in string format"}), 400
+                "error": "Name is required in string format"}), 400
 
         age = new_user.get("age")
         if age is None or not isinstance(age, int):
             return jsonify({
-                "error": "Age is requiredd in int format"}), 400
+                "error": "Age is required in int format"}), 400
 
         city = new_user.get("city")
         if city is None or not isinstance(city, str):
             return jsonify({
-                "error": "City is requiredd in string format"}), 400
+                "error": "City is required in string format"}), 400
 
         users[username] = {
             "name": name,
@@ -63,9 +74,11 @@ def add_user():
         }
         return jsonify({
             "message": "Your account has been registered",
-            "user": request.get_json()
+            "user": new_user
             }
             ), 201
+    else:
+        return jsonify({"error": "No data"})
 
 
 if __name__ == "__main__":
