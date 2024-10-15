@@ -39,22 +39,28 @@ def add_user():
         username = new_user.get("username")
         if username is None:
             return jsonify({"error": "Username is required"}), 400
-        my_dict["name"] = new_user.get("name")
+
         name = new_user.get("name")
-        my_dict["age"] = new_user.get("age")
+        if name is None or not isinstance(name, str):
+            return jsonify({"error": "Name is requiredd in string format"}), 400
+
         age = new_user.get("age")
-        my_dict["city"] = new_user.get("city")
+        if age is None or not isinstance(age, int):
+            return jsonify({"error": "Age is requiredd in int format"}), 400
+
         city = new_user.get("city")
+        if city is None or not isinstance(city, str):
+            return jsonify({"error": "City is requiredd in string format"}), 400
+        
         users[username] = {
+            "username": username,
             "name": name,
             "age": age,
             "city": city
         }
         return jsonify({
             "message": "Your account has been registered",
-            "name": name,
-            "age": age,
-            "city": city
+            "user": users[username]
             }
             ), 201
 
