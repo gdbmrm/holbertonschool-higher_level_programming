@@ -31,10 +31,15 @@ def show_user_profile(username):
     return users[username]
 
 
-@app.route('/add_user', methods=['GET', 'POST'])
-def add_user(new_user):
-    if request.method == 'POST':
-        users[new_user.get("username")] = new_user.get["key"]
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    new_user = request.get_json()
+    if new_user:
+        username = new_user.get("username")
+        if username is None:
+            return "\"error": "Username is required"", 400
+        key = new_user.get("key")
+        users[username] = key
         return "Your account has been registered", 201
 
 
