@@ -11,21 +11,33 @@ users = {}
 
 @app.route('/')
 def home():
-    return "Welcome to the Flask API!"
+    """
+    welcome message
+    """
+    return "Welcome to the Flask API!", 200
 
 
 @app.route('/data')
 def return_username():
-    return jsonify(list(users.keys()))
+    """
+    return all the username stored
+    """
+    return jsonify(list(users.keys())), 200
 
 
 @app.route('/status')
 def check_status():
-    return "OK"
+    """
+    check the status return ok
+    """
+    return "OK", 200
 
 
 @app.route('/users/<username>')
 def show_user_profile(username):
+    """
+    return user profil if user exist
+    """
     user = users.get(username)
     name = users.get("name")
     age = users.get("age")
@@ -37,11 +49,14 @@ def show_user_profile(username):
         "name": user["name"],
         "age": user["age"],
         "city": user["city"]
-        })
+        }), 200
 
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
+    """
+    add user and return a message
+    """
     my_dict = {}
     new_user = request.get_json()
     if new_user:
@@ -75,7 +90,7 @@ def add_user():
             "user": new_user
             }), 201
     else:
-        return jsonify({"error": "No data"})
+        return jsonify({"error": "No data"}), 400
 
 
 if __name__ == "__main__":
