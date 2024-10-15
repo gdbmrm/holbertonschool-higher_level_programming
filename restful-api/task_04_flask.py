@@ -30,7 +30,7 @@ def check_status():
     """
     check the status return ok
     """
-    return "OK", 200
+    return "OK"
 
 
 @app.route("/users/<username>")
@@ -39,11 +39,12 @@ def show_user_profile(username):
     return user profil if user exist
     """
     user = users.get(username)
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+
     name = users.get("name")
     age = users.get("age")
     city = users.get("city")
-    if user is None:
-        return jsonify({"error": "User not found"}), 404
     return jsonify({
         "username": username,
         "name": user["name"],
@@ -59,23 +60,23 @@ def add_user():
     """
     my_dict = {}
     new_user = request.get_json()
-    if new_user:
-        username = new_user.get("username")
-        if username is None:
+    if new_user is not None and not in users:
+        if not request.json.get("username"):
             return jsonify({
                 "error": "Username is required"}), 400
+        username = new_user.get("username")
 
-        if name is None or not isinstance(name, str):
+        if not request.json.get("name") or not isinstance(name, str):
             return jsonify({
                 "error": "Name is required in string format"}), 400
         name = new_user.get("name")
 
-        if age is None or not isinstance(age, int):
+        if not request.json.get("age") or not isinstance(age, int):
             return jsonify({
                 "error": "Age is required in int format"}), 400
         age = new_user.get("age")
 
-        if city is None or not isinstance(city, str):
+        if not request.json.get("city") or not isinstance(city, str):
             return jsonify({
                 "error": "City is required in string format"}), 400
         city = new_user.get("city")
