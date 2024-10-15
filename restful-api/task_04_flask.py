@@ -60,7 +60,7 @@ def add_user():
     """
     my_dict = {}
     new_user = request.get_json()
-    if new_user is not None and not in users:
+    if new_user is not None and new_user.get("username") not in users:
         if not request.json.get("username"):
             return jsonify({
                 "error": "Username is required"}), 400

@@ -19,3 +19,15 @@ def basic_authentication():
     basic authentication
     """
     return "Basic Auth: Access Granted", 200
+
+@app.route('/login', methods=["POST"])
+def jwt_auth(username, password):
+
+@app.route('/jwt-protected')
+def jwt_protected_route():
+    return "JWT Auth: Access Granted"
+
+@app.route('admin-only')
+def admin_only():
+    return "Admin Access: Granted"
+
