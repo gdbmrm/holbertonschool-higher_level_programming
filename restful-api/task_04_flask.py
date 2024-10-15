@@ -9,23 +9,23 @@ app = Flask(__name__)
 users = {}
 
 
-@app.route('/')
+@app.route("/")
 def home():
     """
     welcome message
     """
-    return "Welcome to the Flask API!", 200
+    return "Welcome to the Flask API!"
 
 
-@app.route('/data')
+@app.route("/data")
 def return_username():
     """
     return all the username stored
     """
-    return jsonify(list(users.keys())), 200
+    return jsonify(list(users.keys()))
 
 
-@app.route('/status')
+@app.route("/status")
 def check_status():
     """
     check the status return ok
@@ -33,7 +33,7 @@ def check_status():
     return "OK", 200
 
 
-@app.route('/users/<username>')
+@app.route("/users/<username>")
 def show_user_profile(username):
     """
     return user profil if user exist
@@ -52,7 +52,7 @@ def show_user_profile(username):
         }), 200
 
 
-@app.route('/add_user', methods=['POST'])
+@app.route("/add_user", methods=["POST"])
 def add_user():
     """
     add user and return a message

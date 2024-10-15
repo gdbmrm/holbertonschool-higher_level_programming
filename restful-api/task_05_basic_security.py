@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 from flask import Flask, jsonify, request
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 users = {
@@ -11,6 +13,7 @@ users = {
 
 
 @app.route('/basic-protected')
+@auth.login_required
 def basic_authentication():
     """
     basic authentication
