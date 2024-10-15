@@ -65,20 +65,20 @@ def add_user():
             return jsonify({
                 "error": "Username is required"}), 400
 
-        name = new_user.get("name")
         if name is None or not isinstance(name, str):
             return jsonify({
                 "error": "Name is required in string format"}), 400
+        name = new_user.get("name")
 
-        age = new_user.get("age")
         if age is None or not isinstance(age, int):
             return jsonify({
                 "error": "Age is required in int format"}), 400
+        age = new_user.get("age")
 
-        city = new_user.get("city")
         if city is None or not isinstance(city, str):
             return jsonify({
                 "error": "City is required in string format"}), 400
+        city = new_user.get("city")
 
         users[username] = {
             "name": name,
@@ -86,7 +86,7 @@ def add_user():
             "city": city
         }
         return jsonify({
-            "message": "Your account has been registered",
+            "message": "User added",
             "user": new_user
             }), 201
     else:
