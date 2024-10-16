@@ -8,9 +8,9 @@ import secrets
 app = Flask(__name__)
 
 users = {
-      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
-      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
-  }
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
+}
 
 secret = secrets.token_hex(32)
 # clé secrete
@@ -34,14 +34,15 @@ def login():
 
     user = User.query.filter_by(username=username).one_or_none()
     if not user or not user.check_password(password):
-        return jsonify("Wrong username or password"), 401
+        return jsonify({"error":"Wrong username or password"}), 401
 
     access_token = create_access_token(identity=user)
     return jsonify(access_token=access_token), 200
 
 @app.route('/jwt-protected')
+@jwt_required()
 def jwt_protected_route():
-    return "JWT Auth: Access Granted"
+    return "JWT Auth: Access Granted", 200
 
 @app.route('admin-only')
 def admin_only():
