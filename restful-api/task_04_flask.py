@@ -41,16 +41,7 @@ def show_user_profile(username):
     user = users.get(username)
     if user is None:
         return jsonify({"error": "User not found"}), 404
-
-    name = users.get("name")
-    age = users.get("age")
-    city = users.get("city")
-    return jsonify({
-        "username": username,
-        "name": user["name"],
-        "age": user["age"],
-        "city": user["city"]
-        }), 200
+    return jsonify(user), 200
 
 
 @app.route("/add_user", methods=["POST"])
@@ -60,11 +51,11 @@ def add_user():
     """
     my_dict = {}
     new_user = request.get_json()
-    if new_user.get("username") not in users:
-        return jsonify({"error": "User already registered"}), 409
-
-    if new_user is not None:
+    if new_user is None:
         return jsonify({"error": "No data"}), 400
+
+    if new_user.get("username") in users:
+        return jsonify({"error": "User already registered"}), 409
 
     if not request.json.get("username"):
         return jsonify({"error": "Username is required"}), 400
