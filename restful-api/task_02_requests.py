@@ -14,8 +14,7 @@ def fetch_and_print_posts():
     print("Status code: {}".format(response.status_code))
 
     if response.status_code == 200:
-        parsed_data = response.json()
-        for item in parsed_data:
+        for item in response:
             print(item['title'])
 
 
