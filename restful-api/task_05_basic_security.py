@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
 app = Flask(__name__)
+jwt = JWTManager(app)
+
 
 users = {
     "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
@@ -16,15 +18,23 @@ secret = secrets.token_hex(32)
 # clé secrete
 
 
+@auth.verify_password
+def check_user(username, password):
+    """
+    basic authentication
+    """
+    if username in users and \
+            check_password_hash(users.get(username)["password"], password):
+        return username
+    return None
+
 @app.route('/basic-protected')
 @auth.login_required
 def basic_authentication(username, password):
     """
     basic authentication
     """
-    if username in users and \
-            check_password_hash(users.get(username)["password"], password):
-        return "Basic Auth: Access Granted", 200
+    return "Basic Auth: Access Granted", 200
 
 
 @app.route("/login", methods=["POST"])
@@ -47,6 +57,26 @@ def jwt_protected_route():
 @app.route('admin-only')
 def admin_only():
     return "Admin Access: Granted"
+
+@jwt.unauthorized_loader
+def handle_unauthorized_error(err):
+  return jsonify({"error": "Missing or invalid token"}), 401
+
+@jwt.invalid_token_loader
+def handle_invalid_token_error(err):
+  return jsonify({"error": "Invalid token"}), 401
+
+@jwt.expired_token_loader
+def handle_expired_token_error(err):
+    return jsonify({"error": "Token has expired"}), 401
+
+@jwt.revoked_token_loader
+def handle_revoked_token_error(err):
+    return jsonify({"error": "Token has been revoked"}), 401
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(err):
+    return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
     app.run
