@@ -16,6 +16,8 @@ def fetch_and_print_posts():
     if response.status_code == 200:
         for item in response:
             print(item['title'])
+    else:
+        print("The request fail")
 
 
 def fetch_and_save_posts():
@@ -26,10 +28,14 @@ def fetch_and_save_posts():
     if response.status_code == 200:
         data = response.json()
 
+        my_list = [
+            {'id': post['id'], 'title': post['title'],
+                'body': post['body']} for post in data]
+
         with open("posts.csv", "w", newline='') as file_to_write:
             file_writer = csv.DictWriter(
                 file_to_write, fieldnames=['id', 'title', 'body'])
             file_writer.writeheader()
-            for element in data:
-                writer.writerow([element['id'], element['title'],
-                                 element['body']])
+            file_writer.writerows(my_list)
+    else:
+        print("The request fail")
