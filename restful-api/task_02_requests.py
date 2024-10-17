@@ -30,11 +30,12 @@ def fetch_and_save_posts():
         data = response.json()
 
         my_list = [
-            {'id': post['id'],
-            'title': post['title'],
-            'body': post['body']} for post in data]
+            {
+                'id': post['id'],
+                'title': post['title'],
+                'body': post['body']} for post in data]
 
-        with open("posts.csv", "w", newline='', encoding='utf-8') as file_to_write:
+        with open("posts.csv", "w", newline='') as file_to_write:
             file_writer = csv.DictWriter(
                 file_to_write, fieldnames=['id', 'title', 'body'])
             file_writer.writeheader()
