@@ -3,6 +3,7 @@
 API Security and Authentication Techniques
 """
 from flask import Flask, jsonify, request
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
@@ -88,9 +89,9 @@ def admins_only():
     username = request.json.get("username", None)
     user = users.get(username)
 
-    if get_jwt_identity()["role"] not "admin":
+    if get_jwt_identity()["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-    return "Admin Access: Granted"
+    return "Admin Access: Granted", 200
 
 
 @jwt.unauthorized_loader
