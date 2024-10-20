@@ -8,8 +8,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+app.config['SECRET_KEY'] = 'secret_key'
+app.config['JWT_SECRET_KEY'] = 'jwt_secret_key'
 jwt = JWTManager(app)
-
 
 users = {
     "user1": {
