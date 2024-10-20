@@ -26,10 +26,6 @@ users = {
     }
 }
 
-secret = secrets.token_hex(32)
-# clé secrete
-
-
 @auth.verify_password
 def check_user(username, password):
     """
@@ -43,7 +39,7 @@ def check_user(username, password):
 
 @app.route('/basic-protected')
 @auth.login_required
-def basic_authentication(username, password):
+def basic_authentication():
     """
     basic authentication
     """
@@ -146,4 +142,4 @@ def handle_needs_fresh_token_error(err):
 
 
 if __name__ == '__main__':
-    app.run
+    app.run()
