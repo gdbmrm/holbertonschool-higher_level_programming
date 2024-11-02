@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-script that lists all states with a name
-starting with N (upper N) from the database hbtn_0e_0_usa
+ script that lists all cities from the database hbtn_0e_4_usa
 """
 import MySQLdb
 import sys
@@ -16,9 +15,16 @@ if __name__ == "__main__":
         )
 
     cur = database.cursor()
-    cur.execute("SELECT * FROM states WHERE name ='{}'".format(sys.argv[4]))
+    my_state = sys.argv[4]
+    cur.execute(
+        "SELECT cities.name "
+        "FROM cities JOIN states ON cities.state_id = states.id "
+        "WHERE states.name = %s"
+        "ORDER BY cities.id ASC;", (my_state,))
+
     query_rows = cur.fetchall()
     for row in query_rows:
-        print(row)
+        for cities in row:
+            print(cities)
     cur.close()
     database.close()
