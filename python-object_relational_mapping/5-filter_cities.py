@@ -23,8 +23,9 @@ if __name__ == "__main__":
         "ORDER BY cities.id ASC;", (my_state,))
 
     query_rows = cur.fetchall()
-    for row in query_rows:
-        for cities in row:
-            print(cities)
+
+    all_cities = [city[0] for city in query_rows]
+    print(", ".join(all_cities))
+
     cur.close()
     database.close()
