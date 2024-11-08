@@ -7,39 +7,6 @@ You will also implement specific error handling for various edge cases.
 """
 import os
 
-template = """Hello {name},
-
-You are invited to the {event_title} on {event_date} at {event_location}.
-
-We look forward to your presence.
-
-Best regards,
-Event Team"""
-
-attendees = [
-    {
-        "name": "Alice",
-        "email": "alice@example.com",
-        "event_title": "Annual Tech Conference",
-        "event_date": "",
-        "event_location": "New York City"
-    },
-    {
-        "name": "Bob",
-        "email": "bob@example.com",
-        "event_title": "Annual Tech Conference",
-        "event_date": "December 15, 2024",
-        "event_location": "New York City"
-    },
-    {
-        "name": "Charlie",
-        "email": "charlie@example.com",
-        "event_title": "Annual Tech Conference",
-        "event_date": "December 15, 2024",
-        "event_location": "New York City"
-    },
-]
-
 
 def generate_invitations(template, attendees):
     """
