@@ -20,9 +20,14 @@ def contact():
 
 @app.route('/items')
 def item():
-    with open("items.json", "r") as file_to_open:
-        data = json.load(file_to_open)
-    return render_template('items.html', list_items=data)
+    try:
+        with open("items.json", "r") as file_to_open:
+            data = json.load(file_to_open)
+            items = data.get('items', [])
+    except Exception as e:
+        print(f"{e}")
+        items = []
+    return render_template('items.html', list_items=items)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
