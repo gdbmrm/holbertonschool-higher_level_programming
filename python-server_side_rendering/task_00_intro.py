@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 import os
-
+"""
+Python function that generates personalized invitation files
+from a template with placeholders and a list of objects.
+Each output file should be named sequentially, starting from 1.
+You will also implement specific error handling for various edge cases.
+"""
 
 template = """Hello {name},
 
@@ -59,4 +64,3 @@ def generate_invitations(template, attendees):
                 file.write(text_changed)
     except Exception as e:
         print("Cannot create/write in file")
-
