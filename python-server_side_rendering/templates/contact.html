@@ -1,8 +1,14 @@
-{% extends 'index.html' %}
-
-{% block title %}About Us - My Flask App{% endblock %}
-
-{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+</head>
+<body>
+    {% include 'header.html' %}
     <h1>Contact Us</h1>
-    <p>Here is the contact</p>
-{% endblock %}
+    <p>Contact page.</p>
+    {% include 'footer.html' %}
+</body>
+</html>
