@@ -23,12 +23,28 @@ attendees = [
         "event_title": "Annual Tech Conference",
         "event_date": "December 15, 2024",
         "event_location": "New York City"
-    }
+    },
+    {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "event_title": "Annual Tech Conference",
+        "event_date": "December 15, 2024",
+        "event_location": "New York City"
+    },
+    {
+        "name": "Charlie",
+        "email": "charlie@example.com",
+        "event_title": "Annual Tech Conference",
+        "event_date": "December 15, 2024",
+        "event_location": "New York City"
+    },
 ]
 
 
 def generate_invitations(template, attendees):
-
+    """
+    generate invitations
+    """
     if not isinstance(template, str):
         raise TypeError("Template must be a string")
         return
@@ -42,26 +58,24 @@ def generate_invitations(template, attendees):
             raise TypeError("Each value of attendees must be type dict")
             return
 
-    if len(template) == 0:
+    if not template:
         raise ValueError("Template is empty, no output files generated.")
         return
 
-    if len(attendees) == 0:
+    if not attendees:
         raise ValueError("No data provided, no output files generated.")
 
-    text_changed = template
-
-    for dico in attendees:
+    for idx, dico in enumerate(attendees, start=1):
+        filename = f"output_{idx}.txt"
+        text_changed = template
         for key, value in dico.items():
             if value is None:
                 value = "N/A"
             text_changed = text_changed.replace(f"{{{key}}}", value)
 
-    print(text_changed)
-
-    try:
-        if not os.path.exists("output_X"):
-            with open("output_X.txt", "w+") as file:
-                file.write(text_changed)
-    except Exception as e:
-        print("Cannot create/write in file")
+        try:
+            if not os.path.exists(filename):
+                with open(filename, "w") as file:
+                    file.write(text_changed)
+        except Exception as e:
+            print(f"Cannot create/write in {filename}: {e}")
