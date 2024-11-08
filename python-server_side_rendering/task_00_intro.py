@@ -32,14 +32,14 @@ def generate_invitations(template, attendees):
         filename = f"output_{idx}.txt"
         text_changed = template
         text_changed = text_changed.replace(
-            "{name}", str(dico.get("name", "name:N/A")))
+            "{name}", str(dico.get("name", "N/A")))
         text_changed = text_changed.replace(
-            "{event_title}", str(dico.get("event_title", "event_title:N/A")))
+            "{event_title}", str(dico.get("event_title", "N/A")))
         text_changed = text_changed.replace(
-            "{event_date}", str(dico.get("event_date", "event_date:N/A")))
+            "{event_date}", str(dico.get("event_date", "N/A")))
         text_changed = text_changed.replace(
             "{event_location}", str(dico.get(
-                "event_location", "event_location:N/A")))
+                "event_location", "N/A")))
 
         try:
             with open(filename, "w") as file:

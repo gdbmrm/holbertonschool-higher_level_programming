@@ -1,6 +1,6 @@
-Hello name:N/A,
+Hello N/A,
 
-You are invited to the  on 2023-07-15 at New York.
+You are invited to the N/A on N/A at New York.
 
 We look forward to your presence.
 
