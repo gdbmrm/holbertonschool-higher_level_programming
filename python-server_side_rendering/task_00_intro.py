@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 
 def generate_invitations(template, attendees):
 
@@ -23,12 +24,11 @@ def generate_invitations(template, attendees):
         raise ValueError ("No data provided, no output files generated.")
 
     for dico in attendees:
-        if dico is None:
-            dico = "N/A"
-        template.replace(dico)
+        for key,value in dico.items():
+            if value is None:
+                value = "N/A"
+            template.replace(key, value)
 
-    if os.path.exists(output_X) is None:
+    if os.path.exists("output_X") is None:
         with open(output_X.txt, "w") as file:
             file.write(template)
-
-    
