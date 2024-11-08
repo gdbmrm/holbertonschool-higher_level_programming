@@ -26,32 +26,33 @@ attendees = [
     }
 ]
 
+
 def generate_invitations(template, attendees):
 
     if not isinstance(template, str):
-        raise TypeError ("Template must be a string")
+        raise TypeError("Template must be a string")
         return
 
     if not isinstance(attendees, list):
-        raise TypeError ("Attendees must be a list")
+        raise TypeError("Attendees must be a list")
         return
 
     for dico in attendees:
         if not isinstance(dico, dict):
-            raise TypeError ("Each value of attendees must be type dict")
+            raise TypeError("Each value of attendees must be type dict")
             return
 
     if len(template) == 0:
-        raise ValueError ("Template is empty, no output files generated.")
+        raise ValueError("Template is empty, no output files generated.")
         return
 
     if len(attendees) == 0:
-        raise ValueError ("No data provided, no output files generated.")
+        raise ValueError("No data provided, no output files generated.")
 
     text_changed = template
 
     for dico in attendees:
-        for key,value in dico.items():
+        for key, value in dico.items():
             if value is None:
                 value = "N/A"
             text_changed = text_changed.replace(f"{{{key}}}", value)
