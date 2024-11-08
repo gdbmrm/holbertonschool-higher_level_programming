@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-import os
 """
 Python function that generates personalized invitation files
 from a template with placeholders and a list of objects.
 Each output file should be named sequentially, starting from 1.
 You will also implement specific error handling for various edge cases.
 """
+import os
 
 template = """Hello {name},
 
@@ -21,7 +21,7 @@ attendees = [
         "name": "Alice",
         "email": "alice@example.com",
         "event_title": "Annual Tech Conference",
-        "event_date": "December 15, 2024",
+        "event_date": "",
         "event_location": "New York City"
     },
     {
@@ -47,20 +47,16 @@ def generate_invitations(template, attendees):
     """
     if not isinstance(template, str):
         raise TypeError("Template must be a string")
-        return
 
     if not isinstance(attendees, list):
         raise TypeError("Attendees must be a list")
-        return
 
     for dico in attendees:
         if not isinstance(dico, dict):
             raise TypeError("Each value of attendees must be type dict")
-            return
 
     if not template:
         raise ValueError("Template is empty, no output files generated.")
-        return
 
     if not attendees:
         raise ValueError("No data provided, no output files generated.")
@@ -68,14 +64,17 @@ def generate_invitations(template, attendees):
     for idx, dico in enumerate(attendees, start=1):
         filename = f"output_{idx}.txt"
         text_changed = template
-        for key, value in dico.items():
-            if value is None:
-                value = "N/A"
-            text_changed = text_changed.replace(f"{{{key}}}", value)
+        text_changed = text_changed.replace(
+            "{name}", str(dico.get("name", "N/A")))
+        text_changed = text_changed.replace(
+            "{event_title}", str(dico.get("event_title", "N/A")))
+        text_changed = text_changed.replace(
+            "{event_date}", str(dico.get("event_date", "N/A")))
+        text_changed = text_changed.replace(
+            "{event_location}", str(dico.get("event_location", "N/A")))
 
         try:
-            if not os.path.exists(filename):
-                with open(filename, "w") as file:
-                    file.write(text_changed)
+            with open(filename, "w") as file:
+                file.write(text_changed)
         except Exception as e:
             print(f"Cannot create/write in {filename}: {e}")
