@@ -4,8 +4,28 @@
     <title>Items List</title>
 </head>
 <body>
-    <h1>Name</h1>
-    <h1>Category</h1>
-    <h1>Price</h1>
-</body>
+    {% if response == "Wrong source" %}
+        <p>{{ response }}</p>
+    {% elif response == "JSON file not found" %}
+        <p>{{ response }}</p>
+    {% else %}
+        {% if response is iterable %}
+            {% for product in response %}
+                <h1>Name</h1>
+                {{product['name']}}
+                <h1>Category</h1>
+                {{product['category']}}
+                <h1>Price</h1>
+                {{product['price']}}
+            {% endfor %}
+        {% else %}
+        <h1>Name</h1>
+        {{response['name']}}
+        <h1>Category</h1>
+        {{response['category']}}
+        <h1>Price</h1>
+        {{response['price']}}
+        {% endif %}
+    {% endif %}
+    </body>
 </html>
