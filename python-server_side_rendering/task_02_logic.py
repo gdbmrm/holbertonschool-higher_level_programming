@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from flask import Flask, render_template
 import json
 
@@ -18,16 +19,18 @@ def about():
 def contact():
     return render_template('contact.html')
 
+
 @app.route('/items')
 def item():
     try:
         with open("items.json", "r") as file_to_open:
             data = json.load(file_to_open)
-            items = data.get('items', [])
+            items = data.get("items")
     except Exception as e:
         print(f"{e}")
         items = []
-    return render_template('items.html', list_items=items)
+    return render_template('items.html', items=items)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
