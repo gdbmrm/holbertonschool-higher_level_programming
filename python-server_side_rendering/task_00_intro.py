@@ -10,40 +10,39 @@ import os
 
 def generate_invitations(template, attendees):
     """
-    generate invitations
+    code
     """
     if not isinstance(template, str):
-        raise TypeError("Template must be a string")
+        print("Error: The template is not a string.")
+        return
 
-    if not isinstance(attendees, list):
-        raise TypeError("Attendees must be a list")
+    if template.strip() == "":
+        print("Error: Template is empty, no output files generated.")
+        return
 
-    for dico in attendees:
-        if not isinstance(dico, dict):
-            raise TypeError("Each value of attendees must be type dict")
+    if not isinstance(attendees, list) or not all(
+            isinstance(item, dict) for item in attendees
+            ):
+        print("Error: Attendees must be a list of dictionaries.")
+        return
 
-    if not template:
-        raise ValueError("Template is empty, no output files generated.")
+    if len(attendees) == 0:
+        print("Error: No data provided, no output files generated.")
+        return
 
-    if not attendees:
-        raise ValueError("No data provided, no output files generated.")
-
-    for idx, dico in enumerate(attendees, start=1):
-        filename = f"output_{idx}.txt"
-        text_changed = template
-        text_changed = text_changed.replace(
-            "{name}", str(dico.get("name", "N/A")))
-        text_changed = text_changed.replace(
-            "{event_title}", str(dico.get("event_title", "N/A")))
-        text_changed = text_changed.replace(
-            "{event_date}", str(dico.get("event_date", "N/A")))
-        text_changed = text_changed.replace(
-            "{event_location}", str(dico.get(
-                "event_location", "N/A")))
+    for index, attendee in enumerate(attendees, start=1):
+        output_filename = f"output_{index}.txt"
 
         try:
-            with open(filename, "w") as file:
-                file.write(text_changed)
-                print(f"Generated {file.name}")
+            message = template
+            for placeholder in ["name", "event_title",
+                                "event_date", "event_location"]:
+                value = attendee.get(placeholder, "N/A") or "N/A"
+                message = message.replace(f"{{{placeholder}}}", value)
+
+            with open(output_filename, "w") as output_file:
+                output_file.write(message)
+                print(f"Invitation saved to {output_filename}")
+
         except Exception as e:
-            print(f"Cannot create/write in {filename}: {e}")
+            print(f"Error: Could not write to file {output_filename}. {e}")
