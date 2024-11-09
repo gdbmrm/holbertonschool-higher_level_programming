@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import json
 import csv
 
@@ -35,7 +35,8 @@ def item():
 
 
 @app.route('/products', defaults={'id': None})
-def display_data():
+@app.route('/products/<id>')
+def display_data(id=None):
 
     query = request.args.get('source')
     id = request.args.get('id')
