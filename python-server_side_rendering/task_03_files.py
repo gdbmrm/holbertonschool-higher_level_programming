@@ -32,41 +32,40 @@ def item():
     return render_template('items.html', items=items)
 
 
-@app.route('/products')
-def products():
-    source = request.args.get('source')
-    product_id = request.args.get('id')
-    error_message = None
+@app.route('/products', methods=['GET'])
+def display_products():
+    source = request.args.get('source', '')
+    product_id = request.args.get('id', None)
+    message = None
     products = []
 
-    if source == 'json':
-        try:
-            data = read_json('products.json')
-            products = data
-        except Exception as e:
-            error_message = f"Error reading JSON file: {e}"
-    elif source == 'csv':
-        try:
-            products = read_csv('products.csv')
-        except Exception as e:
-            error_message = f"Error reading CSV file: {e}"
-    else:
-        error_message = "Wrong source. Please specify 'json' or 'csv'."
+    if source not in ['json', 'csv']:
+        message = "Wrong source"
 
-    if product_id:
-        try:
-            product_id = int(product_id)
+    try:
+        if source == 'json':
+            with open('products.json', 'r') as file:
+                products = json.load(file)
+
+        elif source == 'csv':
+            with open('products.csv', 'r') as file:
+                reader = csv.DictReader(file)
+                products = [row for row in reader]
+
+        if product_id:
             products = [
-                product for product in products if int(
+                product for product in products if str(
                     product['id']) == product_id]
             if not products:
-                error_message = "Product not found."
-        except ValueError:
-            error_message = "Invalid product id."
+                message = "Product not found."
 
-    return render_template(
-        'product_display.html', products=products, error_message=error_message)
+    except FileNotFoundError:
+        message = "File not found."
 
+    except Exception as e:
+        message = f"An error occurred: {e}"
+
+    return render_template('product_display.html', products=products, message=message)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

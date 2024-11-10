@@ -1,17 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Display</title>
+    <title>Items List</title>
 </head>
 <body>
-    {% include 'header.html' %}
-    
     <h1>Product List</h1>
-    
-    {% if error_message %}
-        <p>{{ error_message }}</p>
+    {% if message %}
+        <p>{{ message }}</p>
     {% else %}
         <table>
             <thead>
@@ -32,7 +27,5 @@
             </tbody>
         </table>
     {% endif %}
-    
-    {% include 'footer.html' %}
 </body>
 </html>
