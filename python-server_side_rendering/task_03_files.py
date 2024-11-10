@@ -38,32 +38,32 @@ def display_data():
     query = request.args.get('source')
     id = request.args.get('id', None)
     error_message = ""
-    data_product = []
+    product = []
 
     try:
         if query == "json":
             with open("products.json", "r") as json_file:
-                data_product = json.load(json_file)
+                product = json.load(json_file)
 
         elif query == "csv":
             with open("products.csv", "r") as csv_file:
                 spamreader = csv.DictReader(csv_file)
-                data_product = [row for row in spamreader]
+                product = [row for row in spamreader]
         else:
             error_message = "Wrong source"
         if id:
-            data_product = [
-                product for product in data_product
+            product = [
+                product for product in product
                 if str(
                     product['id']) == id]
 
-            if not data_product:
+            if not product:
                 error_message = "Product not found"
 
     except FileNotFoundError:
         error_message = "File not found"
 
-    except SONDecodeError:
+    except json.JSONDecodeError:
         error_message = "Error decoding JSON file"
 
     except csv.Error:
@@ -74,7 +74,7 @@ def display_data():
 
     return render_template(
         "product_display.html",
-        product=data_product,
+        product=product,
         error_message=error_message)
 
 
