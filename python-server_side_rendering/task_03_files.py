@@ -39,48 +39,34 @@ def item():
 def display_data(id=None):
 
     query = request.args.get('source')
-    id = request.args.get('id')
+    id = request.args.get('id', None)
+    error_message = ""
 
-    if query == "json":
-        try:
+    try:
+        if query == "json":
             with open("products.json", "r") as json_file:
-                json_response = json.load(json_file)
-                if id:
-                    for item in json_response:
-                        if str(item.get('id')) == id:
-                            return render_template(
-                                'product_display.html', response=item)
-                else:
-                    return render_template(
-                        'product_display.html', response="Product not found")
+                data_product = json.load(json_file)
 
-                return render_template(
-                    'product_display.html', response=json_response)
-
-        except FileNotFoundError:
-            return render_template(
-                "product_display.html", message="JSON file not found")
-
-    elif query == "csv":
-        try:
+        elif query == "csv":
             with open("products.csv", "r") as csv_file:
-                spamreader = csv.DictReader(csv_file, quotechar="|")
-                csv_response = [row for row in spamreader]
-                if id:
-                    for row in csv_response:
-                        if row.get("id") == id:
-                            return render_template(
-                                'product_display.html', response=row)
+                spamreader = csv.DictReader(csv_file)
+                data_product = [row for row in spamreader]
+        if id:
+            data_product = [
+                product for product in data_product
+                if str(
+                    product['id']) == id]
 
-                return render_template(
-                    'product_display.html', response=csv_response)
+            if not data_product:
+                error_message = "Product not found."
 
-        except FileNotFoundError:
-            return render_template(
-                "product_display.html", message="JSON file not found")
-    else:
-        return render_template(
-            "product_display.html", message="Wrong source")
+    except FileNotFoundError:
+        error_message = "File not found"
+
+    return render_template(
+        "product_display.html",
+        product=data_product,
+        error_message=error_message)
 
 
 if __name__ == '__main__':
