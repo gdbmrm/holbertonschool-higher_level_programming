@@ -32,7 +32,7 @@ def item():
     return render_template('items.html', items=items)
 
 
-@app.route('/products')
+@app.route('/products', methods=['GET'])
 def display_data():
 
     query = request.args.get('source')
@@ -63,7 +63,7 @@ def display_data():
     except FileNotFoundError:
         error_message = "File not found"
 
-    except json.JSONDecodeError:
+    except SONDecodeError:
         error_message = "Error decoding JSON file"
 
     except csv.Error:
