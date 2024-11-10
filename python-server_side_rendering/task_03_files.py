@@ -32,51 +32,40 @@ def item():
     return render_template('items.html', items=items)
 
 
-@app.route('/products', methods=['GET'])
-def display_data():
+@app.route('/products')
+def products():
+    source = request.args.get('source')
+    product_id = request.args.get('id')
+    error_message = None
+    products = []
 
-    query = request.args.get('source')
-    id = request.args.get('id', None)
-    error_message = ""
-    product = []
+    if source == 'json':
+        try:
+            data = read_json('products.json')
+            products = data
+        except Exception as e:
+            error_message = f"Error reading JSON file: {e}"
+    elif source == 'csv':
+        try:
+            products = read_csv('products.csv')
+        except Exception as e:
+            error_message = f"Error reading CSV file: {e}"
+    else:
+        error_message = "Wrong source. Please specify 'json' or 'csv'."
 
-    if id not "csv" or id not "json":
-        message = "Wrong source"
-
-    try:
-        if query == "json":
-            with open("products.json", "r") as json_file:
-                product = json.load(json_file)
-
-        elif query == "csv":
-            with open("products.csv", "r") as csv_file:
-                spamreader = csv.DictReader(csv_file)
-                product = [row for row in spamreader]
-        if id:
-            product = [
-                product for product in product
-                if str(
-                    product['id']) == id]
-
-            if not product:
-                error_message = "Product not found"
-
-    except FileNotFoundError:
-        error_message = "File not found"
-
-    except json.JSONDecodeError:
-        error_message = "Error decoding JSON file"
-
-    except csv.Error:
-        error_message = "Error reading CSV file"
-
-    except Exception as e:
-        error_message = f"Unexpected error: {e}"
+    if product_id:
+        try:
+            product_id = int(product_id)
+            products = [
+                product for product in products if int(
+                    product['id']) == product_id]
+            if not products:
+                error_message = "Product not found."
+        except ValueError:
+            error_message = "Invalid product id."
 
     return render_template(
-        "product_display.html",
-        product=product,
-        error_message=error_message)
+        'product_display.html', products=products, error_message=error_message)
 
 
 if __name__ == '__main__':
