@@ -40,6 +40,9 @@ def display_data():
     error_message = ""
     product = []
 
+    if id not "csv" or id not "json":
+        message = "Wrong source"
+
     try:
         if query == "json":
             with open("products.json", "r") as json_file:
@@ -49,8 +52,6 @@ def display_data():
             with open("products.csv", "r") as csv_file:
                 spamreader = csv.DictReader(csv_file)
                 product = [row for row in spamreader]
-        else:
-            error_message = "Wrong source"
         if id:
             product = [
                 product for product in product
