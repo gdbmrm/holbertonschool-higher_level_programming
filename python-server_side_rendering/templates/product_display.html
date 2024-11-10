@@ -25,13 +25,22 @@
                 {% endfor %}
             </table>
         {% else %}
-            <h1>Name</h1>
-            {{response['name']}}
-            <h1>Category</h1>
-            {{response['category']}}
-            <h1>Price</h1>
-            {{response['price']}}
+            <h1>Item Details</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ response['name'] }}</td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td>{{ response['category'] }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ response['price'] }}</td>
+                </tr>
+            </table>
         {% endif %}
     {% endif %}
-    </body>
+</body>
 </html>
