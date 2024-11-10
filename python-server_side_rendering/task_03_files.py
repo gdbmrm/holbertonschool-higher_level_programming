@@ -35,11 +35,12 @@ def item():
 
 
 @app.route('/products')
-def display_data(id=None):
+def display_data():
 
     query = request.args.get('source')
     id = request.args.get('id', None)
     error_message = ""
+    data_product = []
 
     try:
         if query == "json":
@@ -63,9 +64,15 @@ def display_data(id=None):
 
     except FileNotFoundError:
         error_message = "File not found"
-    
+
+    except json.JSONDecodeError:
+        error_message = "Error decoding JSON file"
+
+    except csv.Error:
+        error_message = "Error reading CSV file"
+
     except Exception as e:
-        error_message = f"{e}"
+        error_message = f"Unexpected error: {e}"
 
     return render_template(
         "product_display.html",
