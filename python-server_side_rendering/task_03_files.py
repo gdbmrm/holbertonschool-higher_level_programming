@@ -34,8 +34,7 @@ def item():
     return render_template('items.html', items=items)
 
 
-@app.route('/products', defaults={'id': None})
-@app.route('/products/<id>')
+@app.route('/products')
 def display_data(id=None):
 
     query = request.args.get('source')
@@ -51,6 +50,8 @@ def display_data(id=None):
             with open("products.csv", "r") as csv_file:
                 spamreader = csv.DictReader(csv_file)
                 data_product = [row for row in spamreader]
+        else:
+            error_message = "Wrong source"
         if id:
             data_product = [
                 product for product in data_product
@@ -58,10 +59,13 @@ def display_data(id=None):
                     product['id']) == id]
 
             if not data_product:
-                error_message = "Product not found."
+                error_message = "Product not found"
 
     except FileNotFoundError:
         error_message = "File not found"
+    
+    except Exception as e:
+        error_message = f"{e}"
 
     return render_template(
         "product_display.html",
