@@ -4,9 +4,9 @@
     <title>Items List</title>
 </head>
 <body>
-    <h1>Product List</h1>
-    {% if message %}
-        <p>{{ message }}</p>
+    <h1>List of the items</h1>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
     {% else %}
         <table>
             <thead>
@@ -17,13 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.category }}</td>
-                        <td>{{ product.price }}</td>
-                    </tr>
-                {% endfor %}
+            {% for product in response %}
+                <tr>
+                    <td>{{product['name']}}</td>
+                    <td>{{product['category']}}</td>
+                    <td>{{product['price']}}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     {% endif %}
